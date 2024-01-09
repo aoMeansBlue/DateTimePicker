@@ -9,6 +9,8 @@ public class DayOfMonthPicker : VisualElement
     Action<DateDayValue> _onChange = null;
     DateDayValue _date;
 
+    static readonly string ussCalendarRowClass = "calendarRow";
+
     int numRows = 6;
     int numCols = 7;
 
@@ -49,6 +51,7 @@ public class DayOfMonthPicker : VisualElement
                 calendarRow.Add(calendarItem);
             }
 
+            calendarRow.AddToClassList(ussCalendarRowClass);
             calendarContainer.Add(calendarRow);
         }
 
