@@ -12,5 +12,18 @@
     margin-left: 2px;
     margin-right: 0;
     margin-top: 2px;
-    background-color: rgba(84, 84, 84, 255);
+    background-color: rgb(84, 84, 84);
+}
+
+.calendarItem--hover {
+    color: rgba(102, 140, 255, 255);
+}
+
+.calendarItem--selected {
+    background-color: rgb(173, 173, 173);
+    color: rgba(37, 91, 255, 255);
+}
+
+.calendarItem--outside-month {
+    opacity: 0.5;
 }

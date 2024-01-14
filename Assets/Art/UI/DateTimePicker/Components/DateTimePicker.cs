@@ -28,7 +28,7 @@ public class DateTimePicker : VisualElement
         _onChange = onChange;
 
         TimeOfDayPicker timeOfDayPicker = new TimeOfDayPicker((time) => { SetTime(time); });
-        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); });
+        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); } , DateTime.Now);
         MonthOfYearPicker monthOfYearPicker = new MonthOfYearPicker((month) => { });
         YearOfDecadePicker yearOfDecadePicker = new YearOfDecadePicker((year) => { });
 
