@@ -13,6 +13,7 @@
     margin-right: 0;
     margin-top: 2px;
     background-color: rgb(84, 84, 84);
+    flex-grow: 0;
 }
 
 .calendarItem--hover {
@@ -26,4 +27,22 @@
 
 .calendarItem--outside-month {
     opacity: 0.5;
+}
+
+.calendarHeaderItem {
+    height: auto;
+    width: 50px;
+    -unity-text-align: upper-center;
+    margin-left: 2px;
+}
+
+.calendarOption {
+}
+
+.calendarOption--hover {
+    color: rgba(102, 140, 255, 255);
+}
+
+.calendarOption--focused {
+    opacity: 0.7;
 }
