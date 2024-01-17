@@ -16,7 +16,7 @@
     flex-grow: 0;
 }
 
-.calendarItem--hover {
+.calendarItem:hover {
     color: rgba(102, 140, 255, 255);
 }
 
@@ -39,10 +39,10 @@
 .calendarOption {
 }
 
-.calendarOption--hover {
+.calendarOption:hover {
     color: rgba(102, 140, 255, 255);
 }
 
-.calendarOption--focused {
+.calendarOption:focus {
     opacity: 0.7;
 }

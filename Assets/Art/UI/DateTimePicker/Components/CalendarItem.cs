@@ -5,12 +5,12 @@ public class CalendarItem : VisualElement
 {
     public DateDayValue date;
     static readonly string ussClass = "calendarItem";
-    static readonly string ussClassHover = "calendarItem--hover";
     static readonly string ussClassSelected = "calendarItem--selected";
     static readonly string ussClassOutsideMonth = "calendarItem--outside-month";
 
     public CalendarItem(DateDayValue date)
     {
+        focusable = true;
         this.date = date;
         var label = new Label(date.Day.ToString());
         Add(label);
@@ -23,26 +23,27 @@ public class CalendarItem : VisualElement
         Year = year }
     ){ }
 
-    public void SetHover(bool isHover = false)
-    {
-        if (isHover)
-        {
-            AddToClassList(ussClassHover);
-        } else
-        {
-            RemoveFromClassList(ussClassHover);
-        }
-        
-    }
-
     public void SetSelected(bool isSelected = false)
     {
         if(isSelected)
         {
             AddToClassList(ussClassSelected);
+            
         } else
         {
             RemoveFromClassList(ussClassSelected);
+        }
+    }
+
+    public void SetFocused(bool isFocused = false)
+    {
+        if (isFocused)
+        {
+            Focus();
+        }
+        else
+        {
+            Blur();
         }
     }
 

@@ -53,50 +53,46 @@ public class DayOfMonthPicker : VisualElement
         VisualElement calendarOptions = new VisualElement();
 
         CalendarOption prevYear = new CalendarOption("<<");
-        prevYear.RegisterCallback<MouseOverEvent>((evt) => { prevYear.SetHover(true); });
         prevYear.RegisterCallback<MouseDownEvent>((evt) => { prevYear.SetFocused(true); });
         prevYear.RegisterCallback<MouseUpEvent>((evt) => { prevYear.SetFocused(false); });
-        prevYear.RegisterCallback<MouseOutEvent>((evt) => { prevYear.SetHover(false); });
         prevYear.RegisterCallback<ClickEvent>((evt) => {
+            beginningOfMonth = beginningOfMonth.AddYears(-1);
             clearCalendar();
-            buildCalendar(Math.Max(year - 1, 0) , month);
+            buildCalendar(beginningOfMonth.Year, beginningOfMonth.Month);
         });
 
         CalendarOption prevMonth = new CalendarOption("<");
-        prevMonth.RegisterCallback<MouseOverEvent>((evt) => { prevMonth.SetHover(true); });
         prevMonth.RegisterCallback<MouseDownEvent>((evt) => { prevMonth.SetFocused(true); });
         prevMonth.RegisterCallback<MouseUpEvent>((evt) => { prevMonth.SetFocused(false); });
-        prevMonth.RegisterCallback<MouseOutEvent>((evt) => { prevMonth.SetHover(false); });
         prevMonth.RegisterCallback<ClickEvent>((evt) => {
+            beginningOfMonth = beginningOfMonth.AddMonths(-1);
             clearCalendar();
-            buildCalendar(year, ((11 + month) % 12) + 1);
+            buildCalendar(beginningOfMonth.Year, beginningOfMonth.Month);
         });
 
         CalendarOption monthOfYearSelection = new CalendarOption(beginningOfMonth.ToString("MMM-yyyy"));
-        monthOfYearSelection.RegisterCallback<MouseOverEvent>((evt) => { monthOfYearSelection.SetHover(true); });
         monthOfYearSelection.RegisterCallback<MouseDownEvent>((evt) => { monthOfYearSelection.SetFocused(true); });
         monthOfYearSelection.RegisterCallback<MouseUpEvent>((evt) => { monthOfYearSelection.SetFocused(false); });
-        monthOfYearSelection.RegisterCallback<MouseOutEvent>((evt) => { monthOfYearSelection.SetHover(false); });
-        monthOfYearSelection.RegisterCallback<ClickEvent>((evt) => { });
+        monthOfYearSelection.RegisterCallback<ClickEvent>((evt) => { 
+            
+        });
 
         CalendarOption nextMonth = new CalendarOption(">");
-        nextMonth.RegisterCallback<MouseOverEvent>((evt) => { nextMonth.SetHover(true); });
         nextMonth.RegisterCallback<MouseDownEvent>((evt) => { nextMonth.SetFocused(true); });
         nextMonth.RegisterCallback<MouseUpEvent>((evt) => { nextMonth.SetFocused(false); });
-        nextMonth.RegisterCallback<MouseOutEvent>((evt) => { nextMonth.SetHover(false); });
         nextMonth.RegisterCallback<ClickEvent>((evt) => {
+            beginningOfMonth = beginningOfMonth.AddMonths(1);
             clearCalendar();
-            buildCalendar(year, ((1 + month) % 12) + 1);
+            buildCalendar(beginningOfMonth.Year, beginningOfMonth.Month);
         });
 
         CalendarOption nextYear = new CalendarOption(">>");
-        nextYear.RegisterCallback<MouseOverEvent>((evt) => { nextYear.SetHover(true); });
         nextYear.RegisterCallback<MouseDownEvent>((evt) => { nextYear.SetFocused(true); });
         nextYear.RegisterCallback<MouseUpEvent>((evt) => { nextYear.SetFocused(false); });
-        nextYear.RegisterCallback<MouseOutEvent>((evt) => { nextYear.SetHover(false); });
         nextYear.RegisterCallback<ClickEvent>((evt) => {
+            beginningOfMonth = beginningOfMonth.AddYears(1);
             clearCalendar();
-            buildCalendar(Math.Max(year + 1, 0), month);
+            buildCalendar(beginningOfMonth.Year, beginningOfMonth.Month);
         });
 
         calendarOptions.Add(prevYear);
@@ -149,14 +145,7 @@ public class DayOfMonthPicker : VisualElement
                     }
 
                 });
-                calendarItem.RegisterCallback<MouseOverEvent>((evt) =>
-                {
-                    calendarItem.SetHover(true);
-                });
-                calendarItem.RegisterCallback<MouseOutEvent>((evt) =>
-                {
-                    calendarItem.SetHover(false);
-                });
+
                 calendarRow.Add(calendarItem);
 
                 if ((_date.Day.Equals(calendarItem.date.Day) && _date.Month.Equals(calendarItem.date.Month) && _date.Year.Equals(calendarItem.date.Year)))
@@ -195,17 +184,6 @@ public class DayOfMonthPicker : VisualElement
     private void onValueUpdated(DateDayValue newValue)
     {
         _onChange?.Invoke(newValue);
-    }
-
-    private (int, int) CalculateYearAndMonth((int, int) initYearAndMonth, int monthsToAdd )
-    {
-        int year = initYearAndMonth.Item1;
-        int month = initYearAndMonth.Item2;
-
-        int yearsToAdd = monthsToAdd / 12;
-        int moduloMonthsToAdd = (monthsToAdd - (yearsToAdd * 12)) % 12;
-
-        return (2012, 1);
     }
     
 }
