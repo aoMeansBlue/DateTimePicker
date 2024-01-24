@@ -8,19 +8,29 @@ public class CalendarItem : VisualElement
     static readonly string ussClassSelected = "calendarItem--selected";
     static readonly string ussClassOutsideMonth = "calendarItem--outside-month";
 
-    public CalendarItem(DateDayValue date)
+    public CalendarItem(DateDayValue date, CalendarItemType type)
     {
         focusable = true;
         this.date = date;
-        var label = new Label(date.Day.ToString());
+        
+        string labelValue = type switch
+        {
+            CalendarItemType.YearItem => date.Year.ToString(),
+            CalendarItemType.MonthItem => ((MonthNames)date.Month).ToString().Substring(0 ,3),
+            _ => date.Day.ToString()
+        };
+
+        Label label = new Label(labelValue);
+
         Add(label);
         AddToClassList(ussClass);
     }
 
-    public CalendarItem(int day, int month, int year) : this(new DateDayValue() { 
+    public CalendarItem(int day, int month, int year, CalendarItemType type = CalendarItemType.DayItem) : this(new DateDayValue() { 
         Day = day, 
         Month = month, 
-        Year = year }
+        Year = year }, 
+        type
     ){ }
 
     public void SetSelected(bool isSelected = false)
@@ -57,4 +67,29 @@ public class CalendarItem : VisualElement
             RemoveFromClassList(ussClassOutsideMonth);
         }
     }
+
+    public enum CalendarItemType
+    {
+        DayItem,
+        MonthItem,
+        YearItem
+    }
+
+    public enum MonthNames
+    {
+        January = 1,
+        February = 2,
+        March = 3,
+        April = 4,
+        May = 5,
+        June = 6,
+        July = 7,
+        August = 8,
+        September = 9,
+        October = 10,
+        November = 11,
+        December = 12
+    }
+    
 }
+

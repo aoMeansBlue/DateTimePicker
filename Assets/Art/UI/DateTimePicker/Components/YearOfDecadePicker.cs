@@ -9,8 +9,8 @@ public class YearOfDecadePicker : VisualElement
     Action<int> _onChange = null;
     DateDayValue _selectedMonth;
 
-    int numRows = 4;
-    int numCols = 3;
+    int numRows = 3;
+    int numCols = 4;
 
     public YearOfDecadePicker() : this(null)
     {

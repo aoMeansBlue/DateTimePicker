@@ -73,7 +73,7 @@ public class DayOfMonthPicker : VisualElement
         CalendarOption monthOfYearSelection = new CalendarOption(beginningOfMonth.ToString("MMM-yyyy"));
         monthOfYearSelection.RegisterCallback<MouseDownEvent>((evt) => { monthOfYearSelection.SetFocused(true); });
         monthOfYearSelection.RegisterCallback<MouseUpEvent>((evt) => { monthOfYearSelection.SetFocused(false); });
-        monthOfYearSelection.RegisterCallback<ClickEvent>((evt) => { 
+        monthOfYearSelection.RegisterCallback<ClickEvent>((evt) => {
             
         });
 
@@ -124,7 +124,7 @@ public class DayOfMonthPicker : VisualElement
                 int index = i * numCols + j;
 
                 DateTime calendarDate = beginningOfCalendar.AddDays(index);
-                CalendarItem calendarItem = new CalendarItem(calendarDate.Day, calendarDate.Month, calendarDate.Year);
+                CalendarItem calendarItem = new CalendarItem(calendarDate.Day, calendarDate.Month, calendarDate.Year, CalendarItem.CalendarItemType.DayItem);
 
                 calendarItem.RegisterCallback<ClickEvent>((evt) =>
                 {
@@ -167,6 +167,15 @@ public class DayOfMonthPicker : VisualElement
 
         Add(calendarOptions);
         Add(calendarContainer);
+    }
+
+    private void buildMonthSelector()
+    {
+
+    }
+    private void buildYearSelector()
+    {
+
     }
 
     private void clearCalendar()

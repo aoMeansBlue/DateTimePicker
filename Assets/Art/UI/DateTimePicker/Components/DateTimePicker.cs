@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,17 +29,24 @@ public class DateTimePicker : VisualElement
         _onChange = onChange;
 
         TimeOfDayPicker timeOfDayPicker = new TimeOfDayPicker((time) => { SetTime(time); });
-        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); } , DateTime.Now);
-        MonthOfYearPicker monthOfYearPicker = new MonthOfYearPicker((month) => { });
+        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); }, DateTime.Now);
+        MonthOfYearPicker monthOfYearPicker = new MonthOfYearPicker((month) => { }, DateTime.Now);
         YearOfDecadePicker yearOfDecadePicker = new YearOfDecadePicker((year) => { });
 
         Add(timeOfDayPicker);
         Add(dayOfMonthPicker);
+        Add(monthOfYearPicker);
     }
 
     public void RegisterOnChangeAction(Action<DateTime> onChange)
     {
         _onChange = onChange;
+    }
+
+    private void ChangePicker(VisualElement oldPicker, VisualElement newPicker)
+    {
+        Remove(oldPicker);
+        Add(newPicker);
     }
 
     private void SetTime(TimeOfDayValue timeOfDay)
