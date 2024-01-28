@@ -29,7 +29,7 @@ public class DateTimePickerField : BaseField<DateTime>
 
     #endregion
 
-    public string labelText;
+    public string labelText { get; set; }
 
     public DateTime defaultDateTime;
 
@@ -39,11 +39,12 @@ public class DateTimePickerField : BaseField<DateTime>
         dateTimePicker.RegisterOnChangeAction((dateTime) => { 
             value = dateTime;
             Debug.Log(value);
+            Debug.Log(labelText);
         });
     }
 
     public DateTimePickerField(string label, VisualElement visualInput) : base(label, visualInput)
     {
-        
+
     }
 }

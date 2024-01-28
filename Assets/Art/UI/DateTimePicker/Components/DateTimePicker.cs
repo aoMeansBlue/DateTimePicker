@@ -31,11 +31,10 @@ public class DateTimePicker : VisualElement
         TimeOfDayPicker timeOfDayPicker = new TimeOfDayPicker((time) => { SetTime(time); });
         DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); }, DateTime.Now);
         MonthOfYearPicker monthOfYearPicker = new MonthOfYearPicker((month) => { }, DateTime.Now);
-        YearOfDecadePicker yearOfDecadePicker = new YearOfDecadePicker((year) => { });
+        YearOfDecadePicker yearOfDecadePicker = new YearOfDecadePicker((year) => { }, DateTime.Now);
 
         Add(timeOfDayPicker);
         Add(dayOfMonthPicker);
-        Add(monthOfYearPicker);
     }
 
     public void RegisterOnChangeAction(Action<DateTime> onChange)
