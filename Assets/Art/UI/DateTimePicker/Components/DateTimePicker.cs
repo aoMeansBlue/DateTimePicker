@@ -19,19 +19,17 @@ public class DateTimePicker : VisualElement
     YearOfDecadePicker _yearOfDecadePicker;
     VisualElement _valueDisplayContainer;
 
-    public DateTimePicker() : this(null)
+    public DateTimePicker() : this(DateTime.Now, null)
     {
         
     }
 
-    public DateTimePicker(Action<DateTime> onChange)
+    public DateTimePicker(DateTime defaultDateTime, Action<DateTime> onChange = null)
     {
         _onChange = onChange;
 
         TimeOfDayPicker timeOfDayPicker = new TimeOfDayPicker((time) => { SetTime(time); });
-        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); }, DateTime.Now);
-        MonthOfYearPicker monthOfYearPicker = new MonthOfYearPicker((month) => { }, DateTime.Now);
-        YearOfDecadePicker yearOfDecadePicker = new YearOfDecadePicker((year) => { }, DateTime.Now);
+        DayOfMonthPicker dayOfMonthPicker = new DayOfMonthPicker((day) => { SetDay(day); }, defaultDateTime);
 
         Add(timeOfDayPicker);
         Add(dayOfMonthPicker);

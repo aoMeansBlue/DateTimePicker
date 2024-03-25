@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Art/UI/DateTimePicker/Styles/dateTimePicker.uss?fileID=7433441132597879392&amp;guid=7531ba6cca6af934abb5ac2b20f35f03&amp;type=3#dateTimePicker" />
+    <DateTimePickerField label="xzvzxcv" />
+</ui:UXML>

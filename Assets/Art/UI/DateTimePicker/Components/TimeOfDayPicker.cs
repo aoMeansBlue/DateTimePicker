@@ -16,15 +16,22 @@ public class TimeOfDayPicker : VisualElement
     IntegerField TimeSeconds;
     IntegerField TimeMilliseconds;
 
-    public TimeOfDayPicker() : this(null)
+    public TimeOfDayPicker() : this(null, DateTime.Now)
     {
         
     }
 
-    public TimeOfDayPicker(Action<TimeOfDayValue> onChange)
+    public TimeOfDayPicker(Action<TimeOfDayValue> onChange, DateTime? defaultTime = null)
     {
+        DateTime defaultDateValue = (defaultTime == null) ? DateTime.UnixEpoch : (DateTime) defaultTime;
+
         _onChange = onChange;
-        _timeOfDay = new TimeOfDayValue { Hours = 0, Minutes = 0, Seconds = 0, Milliseconds = 0 };
+        _timeOfDay = new TimeOfDayValue { 
+            Hours = defaultDateValue.Hour, 
+            Minutes = defaultDateValue.Minute, 
+            Seconds = defaultDateValue.Second, 
+            Milliseconds = 0
+        };
 
         TimeHours = new IntegerField(label: "HH") { value = 0 };
         TimeMinutes = new IntegerField(label:"MM") { value = 0 };
